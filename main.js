@@ -16,7 +16,7 @@ module.exports = {
         'open' () {
             Editor.Panel.open('excel2json');
         },
-        'update-excel'(event, localExcelDir) {
+        'update-excel' (event, localExcelDir) {
             let excelDir = Path.join(Editor.projectPath, localExcelDir);
             if (!Fs.existsSync(excelDir)) {
                 Fs.mkdirSync(excelDir);
@@ -24,6 +24,11 @@ module.exports = {
             let excelArr = Fs.readdirSync(excelDir);
             if (event.reply) {
                 event.reply(null, excelArr);
+            }
+        },
+        'convert-json' (event, excelArr) {
+            if (event.reply) {
+                event.reply(null);
             }
         },
         'scene:saved'(event) {

@@ -37,13 +37,10 @@ Editor.Panel.extend({
                         }
                         this.items = [];
 
-                        let prefixSpace = function (str, length) {
-                            return (str + "                    ").substr(0, length);
-                        };
                         for (let i = 0; i < data.length; i++) {
                             if (Path.extname(data[i]) === ".xlsx") {
                                 this.items.push({
-                                    message: prefixSpace(data[i], 20)//Path.join(Editor.projectInfo.path, localExcelDir, data[i])
+                                    message: data[i]//Path.join(Editor.projectInfo.path, localExcelDir, data[i])
                                 });
                             }
                         }
@@ -52,11 +49,23 @@ Editor.Panel.extend({
 
                 onClickConvert(event) {
                     event.stopPropagation();
-                    Editor.log("Convert");
+                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items, (err, data) => {
+                        if (err) {
+                            Editor.log(err);
+                            return;
+                        }
+                        Editor.log("Convert");
+                    });
                 },
 
                 onClickConvertOne(index) {
-                    Editor.log("Convert ", index);
+                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items[index], (err, data) => {
+                        if (err) {
+                            Editor.log(err);
+                            return;
+                        }
+                        Editor.log("Convert ", index);
+                    });
                 }
             },
         });
