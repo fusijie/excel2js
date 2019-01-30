@@ -1,0 +1,20 @@
+{
+    "name": "excel2json",
+    "version": "0.0.1",
+    "description": "一份简单的扩展包",
+    "author": "Cocos Creator",
+    "main": "main.js",
+    "main-menu": {
+        "i18n:MAIN_MENU.package.title/excel2json": {
+            "message": "excel2json:open"
+        }
+    },
+    "panel": {
+        "main": "panel/index.js",
+        "type": "dockable",
+        "title": "Simple Panel",
+        "width": 400,
+        "height": 300
+    },
+    "scene-script": "scene-walker.js"
+}
