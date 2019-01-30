@@ -14,8 +14,9 @@ module.exports = {
             Editor.Panel.open('excel2json');
         },
         'update-excel'(event, ...args) {
+            let fs = require('fs');
             if (event.reply) {
-                event.reply(null, 'Fine, thank you!');
+                event.reply(null, 'update-excel');
             }
         },
         'scene:saved'(event) {

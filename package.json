@@ -12,7 +12,7 @@
     "panel": {
         "main": "panel/index.js",
         "type": "dockable",
-        "title": "Simple Panel",
+        "title": "excel2json",
         "width": 400,
         "height": 300
     },

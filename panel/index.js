@@ -1,17 +1,18 @@
 'use strict';
 
-Editor.Panel.extend({
-    style: `
-    :host { margin: 5px; }
-    h2 { color: #f90; }
-  `,
+const Fs = require('fire-fs');
+const Path = require('fire-path');
 
-    template: `
-    <h2>更新Excel</h2>
-    <ui-button id="btn-update-excel">更新</ui-button>
-    <hr />
-    <div>状态: <span id="label">--</span></div>
-  `,
+Editor.Panel.extend({
+    style: Fs.readFileSync(
+        Editor.url("packages://excel2json/panel/index.css"),
+        "utf-8"
+    ),
+
+    template: Fs.readFileSync(
+        Editor.url("packages://excel2json/panel/index.html"),
+        "utf-8"
+    ),
 
     $: {
         btn_update_excel: '#btn-update-excel',
