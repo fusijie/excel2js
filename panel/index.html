@@ -1,15 +1,16 @@
 <h2>excel2json</h2>
 
-<ui-button class="green" @confirm="onConfirm">{{txtUpdate}}</ui-button>
+<ui-button class="green" @confirm="onClickUpdate">{{txtUpdate}}</ui-button>
+<ui-button class="green" @confirm="onClickConvert">{{txtConvert}}</ui-button>
 <hr />
 <div>
     <ol>
-        <li v-for="item in items">
+        <li v-for="item in items" class="wrapper layout horizontal center">
             <ui-text>
                 {{item.message}}
             </ui-text>
-            <ui-button>
-                转换
+            <ui-button class="green">
+                生成
             </ui-button>
         </li>
     </ol>

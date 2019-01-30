@@ -16,11 +16,12 @@ Editor.Panel.extend({
             el: this.shadowRoot,
             data: {
                 txtUpdate: '点击更新Excel',
+                txtConvert: '全部生成Json',
                 items: [
                 ]
             },
             methods: {
-                onConfirm(event) {
+                onClickUpdate(event) {
                     event.stopPropagation();
                     let localExcelDir = "excel";
                     Editor.Ipc.sendToMain('excel2json:update-excel', localExcelDir, (err, data) => {
@@ -38,6 +39,10 @@ Editor.Panel.extend({
                         }
                     });
                 },
+                onClickConvert(event) { 
+                    event.stopPropagation();
+                    Editor.log("Convert");
+                }
             },
         });
     },
