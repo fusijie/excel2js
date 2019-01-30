@@ -1,6 +1,16 @@
-<h2>更新Excel</h2>
-<ui-button id="btn-update-excel">更新</ui-button>
+<h2>excel2json</h2>
+
+<ui-button class="green" @confirm="onConfirm">{{txtUpdate}}</ui-button>
 <hr />
-<div>状态:
-    <span id="label">--</span>
+<div>
+    <ol>
+        <li v-for="item in items">
+            <ui-text>
+                {{item.message}}
+            </ui-text>
+            <ui-button>
+                转换
+            </ui-button>
+        </li>
+    </ol>
 </div>
