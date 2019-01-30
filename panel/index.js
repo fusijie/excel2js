@@ -4,15 +4,9 @@ const Fs = require('fire-fs');
 const Path = require('fire-path');
 
 Editor.Panel.extend({
-    style: Fs.readFileSync(
-        Editor.url("packages://excel2json/panel/index.css"),
-        "utf-8"
-    ),
+    style: Fs.readFileSync(Editor.url("packages://excel2json/panel/index.css"), "utf-8"),
 
-    template: Fs.readFileSync(
-        Editor.url("packages://excel2json/panel/index.html"),
-        "utf-8"
-    ),
+    template: Fs.readFileSync(Editor.url("packages://excel2json/panel/index.html"), "utf-8"),
 
     $: {
         btn_update_excel: '#btn-update-excel',
