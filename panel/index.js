@@ -5,13 +5,13 @@ const Path = require('fire-path');
 
 Editor.Panel.extend({
     style: Fs.readFileSync(
-        Editor.url("packages://excel2json/panel/index.css"),
-        "utf-8"
+        Editor.url('packages://excel2json/panel/index.css'),
+        'utf-8'
     ),
 
     template: Fs.readFileSync(
-        Editor.url("packages://excel2json/panel/index.html"),
-        "utf-8"
+        Editor.url('packages://excel2json/panel/index.html'),
+        'utf-8'
     ),
 
     $: {},
@@ -30,7 +30,7 @@ Editor.Panel.extend({
             methods: {
                 onClickUpdate(event) {
                     event.stopPropagation();
-                    let localExcelDir = "excel";
+                    let localExcelDir = 'excel';
                     Editor.Ipc.sendToMain('excel2json:update-excel', localExcelDir, (err, data) => {
                         if (err) {
                             Editor.log(err);
@@ -39,11 +39,15 @@ Editor.Panel.extend({
                         this.items = [];
 
                         for (let i = 0; i < data.length; i++) {
-                            if (Path.extname(data[i]) === ".xlsx") {
-                                this.items.push({
-                                    message: data[i]//Path.join(Editor.projectInfo.path, localExcelDir, data[i])
-                                });
+                            if (Path.extname(data[i]) !== '.xlsx') {
+                                continue;
                             }
+                            if (data[i].indexOf('~') === 0) {
+                                continue;
+                            }
+                            this.items.push({
+                                message: data[i]//Path.join(Editor.projectInfo.path, localExcelDir, data[i])
+                            });
                         }
                     });
                 },
@@ -55,7 +59,7 @@ Editor.Panel.extend({
                             Editor.log(err);
                             return;
                         }
-                        Editor.log("Convert");
+                        Editor.log('Convert');
                     });
                 },
 
@@ -65,7 +69,7 @@ Editor.Panel.extend({
                             Editor.log(err);
                             return;
                         }
-                        Editor.log("Convert ", index);
+                        Editor.log('Convert ', index);
                     });
                 }
             },
