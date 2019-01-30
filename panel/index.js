@@ -23,6 +23,7 @@ Editor.Panel.extend({
                 txtUpdate: '点击更新Excel',
                 txtConvert: '全部生成Json',
                 txtConvertOne: '生成',
+                txtNoExcel: '没有找到Excel',
                 items: [
                 ]
             },

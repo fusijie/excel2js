@@ -4,7 +4,7 @@
     <ui-button class="green" @confirm="onClickConvert">{{txtConvert}}</ui-button>
 </div>
 </hr>
-<div class="scroll">
+<div v-if="items.length!==0" class="scroll">
     <div class="section">
         <!-- <ul> -->
         <li v-for="(index, item) in items" class="wrapper layout horizontal justified">
@@ -13,4 +13,7 @@
         </li>
         <!-- </ul> -->
     </div>
+</div>
+<div class="layout vertical center">
+    <p v-if="items.length===0">{{txtNoExcel}}</p>
 </div>
