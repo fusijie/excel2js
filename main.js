@@ -2,22 +2,21 @@
 
 module.exports = {
     load() {
-        console.log('package loaded');
+        console.log('excel2json package loaded');
     },
 
     unload() {
-        console.log('package unload');
+        console.log('excel2json package unload');
     },
 
     messages: {
         'open' () {
             Editor.Panel.open('excel2json');
         },
-        'say-hello'(event, ...args) {
-            Editor.log(args);
-            Editor.Ipc.sendToPanel('excel2json', 'greeting', 'How are you?', (error, answer) => {
-                Editor.log(answer);
-            });
+        'update-excel'(event, ...args) {
+            if (event.reply) {
+                event.reply(null, 'Fine, thank you!');
+            }
         },
         'scene:saved'(event) {
             Editor.log('scene saved!');

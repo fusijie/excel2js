@@ -7,41 +7,24 @@ Editor.Panel.extend({
   `,
 
     template: `
-    <h2>标准面板</h2>
-    <ui-button id="btn-hello">Hello</ui-button>
-    <ui-button id="btn-ipc">IPC</ui-button>
-    <ui-button id="btn-walk-scene">Walk Scene</ui-button>
-    <ui-button id="btn-not-comp-module">Not comp module</ui-button>
+    <h2>更新Excel</h2>
+    <ui-button id="btn-update-excel">更新</ui-button>
     <hr />
     <div>状态: <span id="label">--</span></div>
   `,
 
     $: {
-        btn_hello: '#btn-hello',
-        btn_ipc: '#btn-ipc',
-        btn_walk_scene: '#btn-walk-scene',
-        btn_not_comp_module: '#btn-not-comp-module',
-        label: '#label',
+        btn_update_excel: '#btn-update-excel',
     },
 
     ready() {
-        this.$btn_hello.addEventListener('confirm', () => {
-            this.$label.innerText = '你好';
-            setTimeout(() => {
-                this.$label.innerText = '--';
-            }, 500);
-        });
-        this.$btn_ipc.addEventListener('confirm', () => {
-            Editor.Ipc.sendToMain('excel2json:say-hello', 'Hello, this is simple panel');
-        });
-        this.$btn_walk_scene.addEventListener('confirm', () => {
-            Editor.Scene.callSceneScript('excel2json', 'get-canvas-children', (err, length) => {
-                Editor.log(`get-canvas-children callback :  length - ${length}`);
-            });
-        });
-        this.$btn_not_comp_module.addEventListener('confirm', () => {
-            Editor.Scene.callSceneScript('excel2json', 'not_comp_module', (err, random_num) => {
-                Editor.log(`not_comp_module callback :  random_num - ${random_num}`);
+        this.$btn_update_excel.addEventListener('confirm', () => {
+            Editor.Ipc.sendToMain('excel2json:update-excel', (err, data) => {
+                if (err) {
+                    Editor.log(err);
+                    return;
+                }
+                Editor.log(data);
             });
         });
     },
