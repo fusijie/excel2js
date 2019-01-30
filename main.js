@@ -1,5 +1,8 @@
 'use strict';
 
+const Fs = require('fire-fs');
+const Path = require('fire-path');
+
 module.exports = {
     load() {
         console.log('excel2json package loaded');
@@ -13,10 +16,14 @@ module.exports = {
         'open' () {
             Editor.Panel.open('excel2json');
         },
-        'update-excel'(event, ...args) {
-            let fs = require('fs');
+        'update-excel'(event, localExcelDir) {
+            let excelDir = Path.join(Editor.projectPath, localExcelDir);
+            if (!Fs.existsSync(excelDir)) {
+                Fs.mkdirSync(excelDir);
+            }
+            let excelArr = Fs.readdirSync(excelDir);
             if (event.reply) {
-                event.reply(null, 'update-excel');
+                event.reply(null, excelArr);
             }
         },
         'scene:saved'(event) {

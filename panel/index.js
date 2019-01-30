@@ -20,12 +20,17 @@ Editor.Panel.extend({
 
     ready() {
         this.$btn_update_excel.addEventListener('confirm', () => {
-            Editor.Ipc.sendToMain('excel2json:update-excel', (err, data) => {
+            let localExcelDir = "excel";
+            Editor.Ipc.sendToMain('excel2json:update-excel', localExcelDir, (err, data) => {
                 if (err) {
                     Editor.log(err);
                     return;
                 }
-                Editor.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    if (Path.extname(data[i]) === ".xlsx") {
+                        Editor.log(Path.join(Editor.projectInfo.path, localExcelDir, data[i]));
+                    }
+                }
             });
         });
     },
