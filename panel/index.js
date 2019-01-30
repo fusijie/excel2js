@@ -4,12 +4,17 @@ const Fs = require('fire-fs');
 const Path = require('fire-path');
 
 Editor.Panel.extend({
-    style: Fs.readFileSync(Editor.url("packages://excel2json/panel/index.css"), "utf-8"),
+    style: Fs.readFileSync(
+        Editor.url("packages://excel2json/panel/index.css"),
+        "utf-8"
+    ),
 
-    template: Fs.readFileSync(Editor.url("packages://excel2json/panel/index.html"), "utf-8"),
+    template: Fs.readFileSync(
+        Editor.url("packages://excel2json/panel/index.html"),
+        "utf-8"
+    ),
 
-    $: {
-    },
+    $: {},
 
     ready() {
         new window.Vue({
@@ -17,6 +22,7 @@ Editor.Panel.extend({
             data: {
                 txtUpdate: '点击更新Excel',
                 txtConvert: '全部生成Json',
+                txtConvertOne: '生成',
                 items: [
                 ]
             },
@@ -30,18 +36,27 @@ Editor.Panel.extend({
                             return;
                         }
                         this.items = [];
+
+                        let prefixSpace = function (str, length) {
+                            return (str + "                    ").substr(0, length);
+                        };
                         for (let i = 0; i < data.length; i++) {
                             if (Path.extname(data[i]) === ".xlsx") {
                                 this.items.push({
-                                    message: Path.join(Editor.projectInfo.path, localExcelDir, data[i])
+                                    message: prefixSpace(data[i], 20)//Path.join(Editor.projectInfo.path, localExcelDir, data[i])
                                 });
                             }
                         }
                     });
                 },
-                onClickConvert(event) { 
+
+                onClickConvert(event) {
                     event.stopPropagation();
                     Editor.log("Convert");
+                },
+
+                onClickConvertOne(index) {
+                    Editor.log("Convert ", index);
                 }
             },
         });
@@ -55,5 +70,5 @@ Editor.Panel.extend({
                 event.reply(null, 'Fine, thank you!');
             }
         }
-    }
+    },
 });

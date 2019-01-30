@@ -5,13 +5,9 @@
 <hr />
 <div>
     <ol>
-        <li v-for="item in items" class="wrapper layout horizontal center">
-            <ui-text>
-                {{item.message}}
-            </ui-text>
-            <ui-button class="green">
-                生成
-            </ui-button>
+        <li v-for="(index, item) in items" class="wrapper layout horizontal center">
+            <span>{{item.message}}</span>
+            <ui-button class="green" @confirm="onClickConvertOne(index)">{{txtConvertOne}}</ui-button>
         </li>
     </ol>
 </div>
