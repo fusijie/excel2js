@@ -1,13 +1,13 @@
 <h2>excel2json</h2>
-<div class="section" style="margin-left:10px;">
+<div class="section">
     <ui-button class="green" @confirm="onClickUpdate">{{txtUpdate}}</ui-button>
     <ui-button class="green" @confirm="onClickConvert">{{txtConvert}}</ui-button>
 </div>
 </hr>
 <div class="scroll">
-    <div class="section" style="margin-left:10px;">
+    <div class="section">
         <!-- <ul> -->
-        <li v-for="(index, item) in items" class="wrapper layout horizontal justified" style="margin-left:10px; margin-right:10px;">
+        <li v-for="(index, item) in items" class="wrapper layout horizontal justified">
             <span>{{item.message}}</span>
             <ui-button class="green" @confirm="onClickConvertOne(index)">{{txtConvertOne}}</ui-button>
         </li>
