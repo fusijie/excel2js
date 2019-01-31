@@ -17,7 +17,7 @@ Editor.Panel.extend({
     $: {},
 
     ready() {
-        new window.Vue({
+        let v = new window.Vue({
             el: this.shadowRoot,
             data: {
                 txtUpdate: '点击更新Excel',
@@ -28,8 +28,7 @@ Editor.Panel.extend({
                 ]
             },
             methods: {
-                onClickUpdate(event) {
-                    event.stopPropagation();
+                onClickUpdate() {
                     let localExcelDir = 'excel';
                     Editor.Ipc.sendToMain('excel2json:update-excel', localExcelDir, (err, data) => {
                         if (err) {
@@ -52,8 +51,7 @@ Editor.Panel.extend({
                     });
                 },
 
-                onClickConvert(event) {
-                    event.stopPropagation();
+                onClickConvert() {
                     Editor.Ipc.sendToMain('excel2json:convert-json', this.items, (err, data) => {
                         if (err) {
                             Editor.log(err);
@@ -74,6 +72,8 @@ Editor.Panel.extend({
                 }
             },
         });
+
+        v.onClickUpdate();
     },
 
     messages: {
