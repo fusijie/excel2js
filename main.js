@@ -26,7 +26,12 @@ module.exports = {
                 event.reply(null, excelArr);
             }
         },
-        'convert-json' (event, excelArr) {
+        'convert-json'(event, excelData) {
+            if (Array.isArray(excelData)) {
+                
+            } else {
+                
+            }
             if (event.reply) {
                 event.reply(null);
             }

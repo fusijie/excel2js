@@ -24,6 +24,7 @@ Editor.Panel.extend({
                 txtConvert: '全部生成Json',
                 txtConvertOne: '生成',
                 txtNoExcel: '没有找到Excel',
+                txtStatus: '',
                 items: [
                 ]
             },
@@ -48,6 +49,7 @@ Editor.Panel.extend({
                                 message: data[i]//Path.join(Editor.projectInfo.path, localExcelDir, data[i])
                             });
                         }
+                        this.txtStatus = '已更新所有excel';
                     });
                 },
 
