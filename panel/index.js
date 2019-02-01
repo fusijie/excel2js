@@ -17,7 +17,7 @@ Editor.Panel.extend({
     $: {},
 
     ready() {
-        let v = new window.Vue({
+        this.v = new window.Vue({
             el: this.shadowRoot,
             data: {
                 txtUpdate: '点击更新Excel',
@@ -54,37 +54,21 @@ Editor.Panel.extend({
                 },
 
                 onClickConvert() {
-                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items, (err, data) => {
-                        if (err) {
-                            Editor.log(err);
-                            return;
-                        }
-                        Editor.log('Convert All');
-                    });
+                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items);
                 },
 
                 onClickConvertOne(index) {
-                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items[index], (err, data) => {
-                        if (err) {
-                            Editor.log(err);
-                            return;
-                        }
-                        Editor.log('Convert ', index);
-                    });
+                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items[index]);
                 }
             },
         });
 
-        v.onClickUpdate();
+        this.v.onClickUpdate();
     },
 
     messages: {
-        'greeting'(event, question) {
-            Editor.log(question);
-            if (event.reply) {
-                //if no error, the first argument should be null
-                event.reply(null, 'Fine, thank you!');
-            }
+        'convert-finish'(event, excelFileName) {
+            this.v.txtStatus = `${excelFileName} 生成完毕`;
         }
     },
 });
