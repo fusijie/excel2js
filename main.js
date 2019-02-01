@@ -26,11 +26,13 @@ module.exports = {
                 event.reply(null, excelArr);
             }
         },
-        'convert-json'(event, excelData) {
-            if (Array.isArray(excelData)) {
-                
+        'convert-json'(event, excelFileName) {
+            if (Array.isArray(excelFileName)) {
+                for (let i = 0; i < excelFileName.length; i++) {
+                    this.convertJson(excelFileName[i]);
+                }
             } else {
-                
+                this.convertJson(excelFileName);
             }
             if (event.reply) {
                 event.reply(null);
@@ -43,4 +45,8 @@ module.exports = {
             Editor.log('asset-changed!');
         }
     },
+
+    convertJson(data) {
+        Editor.log(data.message);
+    }
 };

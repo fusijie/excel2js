@@ -59,7 +59,7 @@ Editor.Panel.extend({
                             Editor.log(err);
                             return;
                         }
-                        Editor.log('Convert');
+                        Editor.log('Convert All');
                     });
                 },
 
