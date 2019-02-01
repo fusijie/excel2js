@@ -16,5 +16,8 @@
         "width": 400,
         "height": 300
     },
-    "scene-script": "scene-walker.js"
+    "scene-script": "scene-walker.js",
+    "dependencies": {
+        "xlsx": "^0.14.1"
+    }
 }

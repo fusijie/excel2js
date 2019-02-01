@@ -30,8 +30,7 @@ Editor.Panel.extend({
             },
             methods: {
                 onClickUpdate() {
-                    let localExcelDir = 'excel';
-                    Editor.Ipc.sendToMain('excel2json:update-excel', localExcelDir, (err, data) => {
+                    Editor.Ipc.sendToMain('excel2json:update-excel', (err, data) => {
                         if (err) {
                             Editor.log(err);
                             return;
@@ -45,9 +44,10 @@ Editor.Panel.extend({
                             if (data[i].indexOf('~') === 0) {
                                 continue;
                             }
-                            this.items.push({
-                                message: data[i]//Path.join(Editor.projectInfo.path, localExcelDir, data[i])
-                            });
+                            if (data[i].indexOf('!') === 0) {
+                                continue;
+                            }
+                            this.items.push(data[i]);
                         }
                         this.txtStatus = '已更新所有excel';
                     });

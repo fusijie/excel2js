@@ -16,8 +16,8 @@ module.exports = {
         'open' () {
             Editor.Panel.open('excel2json');
         },
-        'update-excel' (event, localExcelDir) {
-            let excelDir = Path.join(Editor.projectPath, localExcelDir);
+        'update-excel' (event) {
+            let excelDir = Path.join(Editor.projectPath, "excel");
             if (!Fs.existsSync(excelDir)) {
                 Fs.mkdirSync(excelDir);
             }
@@ -46,7 +46,9 @@ module.exports = {
         }
     },
 
-    convertJson(data) {
-        Editor.log(data.message);
+    convertJson(excelFileName) {
+        let xlsx = Editor.require("packages://excel2json/node_modules/xlsx");
+        let excelName = Path.join(Editor.projectPath, "excel", excelFileName);
+        Editor.log(excelName);
     }
 };
