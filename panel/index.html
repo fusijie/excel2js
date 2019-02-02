@@ -1,4 +1,4 @@
-<h2>excel2json</h2>
+<h2>excel2js</h2>
 <div class="section">
     <ui-button class="green" @confirm="onClickUpdate">{{txtUpdate}}</ui-button>
     <ui-button class="green" @confirm="onClickConvert">{{txtConvert}}</ui-button>
@@ -11,7 +11,9 @@
             <span>{{item.name}}</span>
             <div class="wrapper layout horizontal center">
                 <ui-button class="green" @confirm="onClickConvertOne(index)">{{txtConvertOne}}</ui-button>
-                <i class={{iconStatus[item.status]}}></i>
+                <i v-if="item.status===0" class="icon-record"></i>
+                <i v-if="item.status===1" class="icon-ok" style="color:#6C9F52"></i>
+                <i v-if="item.status===2" class="icon-cancel" style="color:#B54344"></i>
             </div>
         </li>
         <!-- </ul> -->

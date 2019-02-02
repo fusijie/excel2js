@@ -1,20 +1,20 @@
 {
-    "name": "excel2json",
-    "version": "0.0.1",
-    "description": "一份简单的扩展包",
-    "author": "Cocos Creator",
+    "name": "excel2js",
+    "version": "0.1.0",
+    "description": "转换xlsx文件为js文件",
+    "author": "JackyFu",
     "main": "main.js",
     "main-menu": {
-        "i18n:MAIN_MENU.package.title/excel2json": {
-            "message": "excel2json:open"
+        "i18n:MAIN_MENU.package.title/excel2js": {
+            "message": "excel2js:open"
         }
     },
     "panel": {
         "main": "panel/index.js",
         "type": "dockable",
-        "title": "excel2json",
+        "title": "excel2js",
         "width": 400,
-        "height": 300,
+        "height": 800,
         "min-width": 400
     },
     "dependencies": {

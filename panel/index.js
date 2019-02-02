@@ -5,12 +5,12 @@ const Path = require('fire-path');
 
 Editor.Panel.extend({
     style: Fs.readFileSync(
-        Editor.url('packages://excel2json/panel/index.css'),
+        Editor.url('packages://excel2js/panel/index.css'),
         'utf-8'
     ),
 
     template: Fs.readFileSync(
-        Editor.url('packages://excel2json/panel/index.html'),
+        Editor.url('packages://excel2js/panel/index.html'),
         'utf-8'
     ),
 
@@ -34,7 +34,7 @@ Editor.Panel.extend({
             },
             methods: {
                 onClickUpdate() {
-                    Editor.Ipc.sendToMain('excel2json:update-excel', (err, data) => {
+                    Editor.Ipc.sendToMain('excel2js:update-excel', (err, data) => {
                         if (err) {
                             Editor.log(err);
                             return;
@@ -63,11 +63,11 @@ Editor.Panel.extend({
                     if (this.items.length === 0) {
                         return;
                     }
-                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items);
+                    Editor.Ipc.sendToMain('excel2js:convert-json', this.items);
                 },
 
                 onClickConvertOne(index) {
-                    Editor.Ipc.sendToMain('excel2json:convert-json', this.items[index]);
+                    Editor.Ipc.sendToMain('excel2js:convert-json', this.items[index]);
                 }
             },
         });

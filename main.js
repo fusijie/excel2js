@@ -5,16 +5,16 @@ const Path = require('fire-path');
 
 module.exports = {
     load() {
-        console.log('excel2json package loaded');
+        console.log('excel2js package loaded');
     },
 
     unload() {
-        console.log('excel2json package unload');
+        console.log('excel2js package unload');
     },
 
     messages: {
         'open'() {
-            Editor.Panel.open('excel2json');
+            Editor.Panel.open('excel2js');
         },
 
         'update-excel'(event) {
@@ -46,7 +46,7 @@ module.exports = {
 
     convertJson(excelFileName) {
         //解析excel
-        let xlsx = Editor.require('packages://excel2json/node_modules/xlsx');
+        let xlsx = Editor.require('packages://excel2js/node_modules/xlsx');
         let excelName = Path.join(Editor.projectPath, 'excel', excelFileName);
         const workbook = xlsx.readFile(excelName);
         const sheetNames = workbook.SheetNames;
@@ -86,7 +86,7 @@ module.exports = {
         try {
             eval(jsonText);
         } catch (error) {
-            Editor.Ipc.sendToPanel('excel2json', 'convert-failed', excelFileName);
+            Editor.Ipc.sendToPanel('excel2js', 'convert-failed', excelFileName);
             return;
         }
 
@@ -97,18 +97,18 @@ module.exports = {
             Editor.assetdb.saveExists(url, jsonText, (err) => {
                 // Editor.log(err);
                 if (err) {
-                    Editor.Ipc.sendToPanel('excel2json', 'convert-failed', excelFileName);
+                    Editor.Ipc.sendToPanel('excel2js', 'convert-failed', excelFileName);
                 } else {
-                    Editor.Ipc.sendToPanel('excel2json', 'convert-success', excelFileName);
+                    Editor.Ipc.sendToPanel('excel2js', 'convert-success', excelFileName);
                 }
             });
         } else {
             Editor.assetdb.create(url, jsonText, (err) => {
                 // Editor.log(err);
                 if (err) {
-                    Editor.Ipc.sendToPanel('excel2json', 'convert-failed', excelFileName);
+                    Editor.Ipc.sendToPanel('excel2js', 'convert-failed', excelFileName);
                 } else {
-                    Editor.Ipc.sendToPanel('excel2json', 'convert-success', excelFileName);
+                    Editor.Ipc.sendToPanel('excel2js', 'convert-success', excelFileName);
                 }
             });
         }
