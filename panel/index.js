@@ -24,7 +24,6 @@ Editor.Panel.extend({
                 txtConvert: '全部生成Json',
                 txtConvertOne: '生成',
                 txtNoExcel: '没有找到Excel',
-                txtStatus: '',
                 iconStatus: [
                     'icon-record',
                     'icon-ok',
@@ -57,7 +56,6 @@ Editor.Panel.extend({
                                 status: 0,
                             });
                         }
-                        this.txtStatus = '已更新所有excel';
                     });
                 },
 
