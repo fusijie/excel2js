@@ -75,11 +75,19 @@ Editor.Panel.extend({
     },
 
     messages: {
-        'convert-finish'(event, excelFileName) {
-            this.v.txtStatus = `${excelFileName} 生成完毕`;
+        'convert-success'(event, excelFileName) {
             for (let i = 0; i < this.v.items.length; i++) {
                 if (this.v.items[i].name === excelFileName) {
                     this.v.items[i].status = 1;
+                    break;
+                }
+            }
+        },
+
+        'convert-failed'(event, excelFileName) {
+            for (let i = 0; i < this.v.items.length; i++) {
+                if (this.v.items[i].name === excelFileName) {
+                    this.v.items[i].status = 2;
                     break;
                 }
             }

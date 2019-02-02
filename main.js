@@ -78,17 +78,30 @@ module.exports = {
         jsonText += '];';
 
         //写入js文件
-        let jsonDir = Path.join(Editor.projectPath, 'assets', 'data');
-        if (!Fs.existsSync(jsonDir)) {
-            Fs.mkdirSync(jsonDir);
+        let jsonDir = 'db://assets/data';
+        if (!Editor.assetdb.exists(jsonDir)) {
+            Editor.assetdb.create(jsonDir);
         }
         let excelFile = excelFileName.substr(0, excelFileName.lastIndexOf('.xlsx'));
         let url = `db://assets/data/${excelFile}.js`;
         if (Editor.assetdb.exists(url)) {
-            Editor.assetdb.saveExists(url, jsonText);
+            Editor.assetdb.saveExists(url, jsonText, (err) => {
+                Editor.log(err);
+                if (err) {
+                    Editor.Ipc.sendToPanel('excel2json', 'convert-failed', excelFileName);
+                } else {
+                    Editor.Ipc.sendToPanel('excel2json', 'convert-success', excelFileName);
+                }
+            });
         } else {
-            Editor.assetdb.create(url, jsonText);
+            Editor.assetdb.create(url, jsonText, (err) => {
+                Editor.log(err);
+                if (err) {
+                    Editor.Ipc.sendToPanel('excel2json', 'convert-failed', excelFileName);
+                } else {
+                    Editor.Ipc.sendToPanel('excel2json', 'convert-success', excelFileName);
+                }
+            });
         }
-        Editor.Ipc.sendToPanel('excel2json', 'convert-finish', excelFileName);
     }
 };
