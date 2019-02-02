@@ -62,6 +62,9 @@ Editor.Panel.extend({
                 },
 
                 onClickConvert() {
+                    if (this.items.length === 0) {
+                        return;
+                    }
                     Editor.Ipc.sendToMain('excel2json:convert-json', this.items);
                 },
 
@@ -91,6 +94,6 @@ Editor.Panel.extend({
                     break;
                 }
             }
-        }
+        },
     },
 });
