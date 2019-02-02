@@ -5,11 +5,9 @@ const Path = require('fire-path');
 
 module.exports = {
     load() {
-        console.log('excel2js package loaded');
     },
 
     unload() {
-        console.log('excel2js package unload');
     },
 
     messages: {
@@ -19,32 +17,31 @@ module.exports = {
 
         'update-excel'(event) {
             let excelDir = Path.join(Editor.projectPath, 'excel');
-            if (!Fs.existsSync(excelDir)) {
-                Fs.mkdirSync(excelDir);
+            let excelArr = [];
+            if (Fs.existsSync(excelDir)) {
+                excelArr = Fs.readdirSync(excelDir);
             }
-            let excelArr = Fs.readdirSync(excelDir);
             if (event.reply) {
                 event.reply(null, excelArr);
             }
         },
 
-        'convert-json'(event, excelFileInfo) {
-            let jsonDir = 'db://assets/data';
-            if (!Editor.assetdb.exists(jsonDir)) {
-                Editor.assetdb.create(jsonDir);
+        'convert-js'(event, excelFileInfo) {
+            let jsDir = 'db://assets/data';
+            if (!Editor.assetdb.exists(jsDir)) {
+                Editor.assetdb.create(jsDir);
             }
             if (Array.isArray(excelFileInfo)) {
                 for (let i = 0; i < excelFileInfo.length; i++) {
-                    this.convertJson(excelFileInfo[i].name);
+                    this.convertJs(excelFileInfo[i].name);
                 }
             } else {
-                this.convertJson(excelFileInfo.name);
+                this.convertJs(excelFileInfo.name);
             }
         },
-        'scene:saved'(event) { Editor.log('scene saved!'); },
     },
 
-    convertJson(excelFileName) {
+    convertJs(excelFileName) {
         //解析excel
         let xlsx = Editor.require('packages://excel2js/node_modules/xlsx');
         let excelName = Path.join(Editor.projectPath, 'excel', excelFileName);
@@ -71,20 +68,20 @@ module.exports = {
         data.splice(0, 2);
 
         //转Array为text
-        let jsonText = 'module.exports = [\n';
+        let jsText = 'module.exports = [\n';
         for (let i = 0; i < data.length; i++) {
-            jsonText += '\t{';
+            jsText += '\t{';
             for (let key in data[i]) {
-                jsonText += `${key}:${data[i][key]}, `;
+                jsText += `${key}:${data[i][key]}, `;
             }
-            jsonText = jsonText.substr(0, jsonText.length - 2);
-            jsonText += '},\n';
+            jsText = jsText.substr(0, jsText.length - 2);
+            jsText += '},\n';
         }
-        jsonText += '];';
+        jsText += '];';
 
         //校验js文件
         try {
-            eval(jsonText);
+            eval(jsText);
         } catch (error) {
             Editor.Ipc.sendToPanel('excel2js', 'convert-failed', excelFileName);
             return;
@@ -94,8 +91,7 @@ module.exports = {
         let excelFile = excelFileName.substr(0, excelFileName.lastIndexOf('.xlsx'));
         let url = `db://assets/data/${excelFile}.js`;
         if (Editor.assetdb.exists(url)) {
-            Editor.assetdb.saveExists(url, jsonText, (err) => {
-                // Editor.log(err);
+            Editor.assetdb.saveExists(url, jsText, (err) => {
                 if (err) {
                     Editor.Ipc.sendToPanel('excel2js', 'convert-failed', excelFileName);
                 } else {
@@ -103,8 +99,7 @@ module.exports = {
                 }
             });
         } else {
-            Editor.assetdb.create(url, jsonText, (err) => {
-                // Editor.log(err);
+            Editor.assetdb.create(url, jsText, (err) => {
                 if (err) {
                     Editor.Ipc.sendToPanel('excel2js', 'convert-failed', excelFileName);
                 } else {

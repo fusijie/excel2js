@@ -21,7 +21,7 @@ Editor.Panel.extend({
             el: this.shadowRoot,
             data: {
                 txtUpdate: '点击更新Excel',
-                txtConvert: '全部生成Json',
+                txtConvert: '全部生成Js',
                 txtConvertOne: '生成',
                 txtNoExcel: '没有找到Excel',
                 iconStatus: [
@@ -63,11 +63,11 @@ Editor.Panel.extend({
                     if (this.items.length === 0) {
                         return;
                     }
-                    Editor.Ipc.sendToMain('excel2js:convert-json', this.items);
+                    Editor.Ipc.sendToMain('excel2js:convert-js', this.items);
                 },
 
                 onClickConvertOne(index) {
-                    Editor.Ipc.sendToMain('excel2js:convert-json', this.items[index]);
+                    Editor.Ipc.sendToMain('excel2js:convert-js', this.items[index]);
                 }
             },
         });

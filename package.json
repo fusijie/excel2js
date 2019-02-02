@@ -5,14 +5,14 @@
     "author": "JackyFu",
     "main": "main.js",
     "main-menu": {
-        "i18n:MAIN_MENU.package.title/excel2js": {
+        "i18n:MAIN_MENU.package.title/Excel2js": {
             "message": "excel2js:open"
         }
     },
     "panel": {
         "main": "panel/index.js",
         "type": "dockable",
-        "title": "excel2js",
+        "title": "Excel2js",
         "width": 400,
         "height": 800,
         "min-width": 400
