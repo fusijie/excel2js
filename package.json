@@ -13,9 +13,9 @@
         "main": "panel/index.js",
         "type": "dockable",
         "title": "excel2json",
-        "width": 300,
+        "width": 400,
         "height": 300,
-        "min-width": 300
+        "min-width": 400
     },
     "scene-script": "scene-walker.js",
     "dependencies": {
