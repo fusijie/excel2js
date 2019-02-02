@@ -10,9 +10,12 @@
 <div v-if="items.length!==0" class="scroll">
     <div class="section">
         <!-- <ul> -->
-        <li v-for="(index, item) in items" class="wrapper layout horizontal justified">
-            <span>{{item}}</span>
-            <ui-button class="green" @confirm="onClickConvertOne(index)">{{txtConvertOne}}</ui-button>
+        <li v-for="(index, item) in items" class="wrapper layout horizontal center justified">
+            <span>{{item.name}}</span>
+            <div class="wrapper layout horizontal center">
+                <ui-button class="green" @confirm="onClickConvertOne(index)">{{txtConvertOne}}</ui-button>
+                <i class={{iconStatus[item.status]}}></i>
+            </div>
         </li>
         <!-- </ul> -->
     </div>

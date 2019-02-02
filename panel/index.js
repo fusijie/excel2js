@@ -25,6 +25,11 @@ Editor.Panel.extend({
                 txtConvertOne: '生成',
                 txtNoExcel: '没有找到Excel',
                 txtStatus: '',
+                iconStatus: [
+                    'icon-record',
+                    'icon-ok',
+                    'icon-cancel'
+                ],
                 items: [
                 ]
             },
@@ -47,7 +52,10 @@ Editor.Panel.extend({
                             if (data[i].indexOf('!') === 0) {
                                 continue;
                             }
-                            this.items.push(data[i]);
+                            this.items.push({
+                                name: data[i],
+                                status: 0,
+                            });
                         }
                         this.txtStatus = '已更新所有excel';
                     });
@@ -69,6 +77,12 @@ Editor.Panel.extend({
     messages: {
         'convert-finish'(event, excelFileName) {
             this.v.txtStatus = `${excelFileName} 生成完毕`;
+            for (let i = 0; i < this.v.items.length; i++) {
+                if (this.v.items[i].name === excelFileName) {
+                    this.v.items[i].status = 1;
+                    break;
+                }
+            }
         }
     },
 });

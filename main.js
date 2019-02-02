@@ -28,13 +28,13 @@ module.exports = {
             }
         },
 
-        'convert-json'(event, excelFileName) {
-            if (Array.isArray(excelFileName)) {
-                for (let i = 0; i < excelFileName.length; i++) {
-                    this.convertJson(excelFileName[i]);
+        'convert-json'(event, excelFileInfo) {
+            if (Array.isArray(excelFileInfo)) {
+                for (let i = 0; i < excelFileInfo.length; i++) {
+                    this.convertJson(excelFileInfo[i].name);
                 }
             } else {
-                this.convertJson(excelFileName);
+                this.convertJson(excelFileInfo.name);
             }
         },
     },
