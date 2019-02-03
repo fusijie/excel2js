@@ -17,6 +17,14 @@
         "height": 800,
         "min-width": 400
     },
+    "panel.help": {
+        "main": "panel/help.js",
+        "type": "dockable",
+        "title": "Help",
+        "width": 400,
+        "height": 800,
+        "min-width": 400
+    },
     "dependencies": {
         "xlsx": "^0.14.1"
     }

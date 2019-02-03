@@ -72,7 +72,7 @@ Editor.Panel.extend({
                 },
 
                 onClickHelp() {
-
+                    Editor.Panel.open('excel2js.help');
                 }
             },
         });
