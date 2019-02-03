@@ -20,8 +20,9 @@ Editor.Panel.extend({
         this.v = new window.Vue({
             el: this.shadowRoot,
             data: {
-                txtUpdate: '点击更新Excel',
-                txtConvert: '全部生成Js',
+                txtUpdate: '点击更新',
+                txtConvert: '全部生成',
+                txtHelp: '查看帮助',
                 txtConvertOne: '生成',
                 txtNoExcel: '没有找到Excel',
                 iconStatus: [
@@ -68,6 +69,10 @@ Editor.Panel.extend({
 
                 onClickConvertOne(index) {
                     Editor.Ipc.sendToMain('excel2js:convert-js', this.items[index]);
+                },
+
+                onClickHelp() {
+
                 }
             },
         });
