@@ -14,8 +14,6 @@ Editor.Panel.extend({
         'utf-8'
     ),
 
-    $: {},
-
     ready() {
         this.v = new window.Vue({
             el: this.shadowRoot,

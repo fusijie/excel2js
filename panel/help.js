@@ -1,23 +1,20 @@
+'use strict';
+
+const Fs = require('fire-fs');
+const Path = require('fire-path');
+
 Editor.Panel.extend({
-    style: `
-    :host {
-      margin: 10px;
-    }
-  `,
+    style: Fs.readFileSync(
+        Editor.url('packages://excel2js/panel/index.css'),
+        'utf-8'
+    ),
 
-    template: `
-    <h2>A Simple Vue Panel</h2>
-
-    <input v-model="message">
-    <p>Input Value = <span>{{message}}</span></p>
-  `,
+    template: Fs.readFileSync(
+        Editor.url('packages://excel2js/panel/help.html'),
+        'utf-8'
+    ),
 
     ready() {
-        new window.Vue({
-            el: this.shadowRoot,
-            data: {
-                message: 'Hello World',
-            },
-        });
+        
     },
 });

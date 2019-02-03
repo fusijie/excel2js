@@ -9,6 +9,10 @@ li {
     margin-right:10px;
 }
 
+ui-markdown {
+    margin-left: 10px;
+}
+
 :host {
     display: flex;
     flex-direction: column;
