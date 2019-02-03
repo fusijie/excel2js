@@ -21,7 +21,7 @@
         "main": "panel/help.js",
         "type": "dockable",
         "title": "Help",
-        "width": 600,
+        "width": 660,
         "height": 800,
         "min-width": 400
     },
