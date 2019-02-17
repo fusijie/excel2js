@@ -30,9 +30,9 @@
 
 ```javascript
 module.exports = [ 
-	{id:0, name:"名字0", num:0, object:{a:1,b:2}, array:[0,1,2]}, 
-	{id:1, name:"名字1", num:1, object:{a:1,b:2}, array:[0,1,2]}, 
-	{id:2, name:"名字2", num:2, object:{a:"对象1",b:"对象1"}, array:["数组1","数组2"]}, 
-	{id:3, name:"名字3", num:3, object:{a:"对象1",b:"对象1"}, array:["数组1","数组2"]}, 
+  {id:0, name:"名字0", num:0, object:{a:1,b:2}, array:[0,1,2]}, 
+  {id:1, name:"名字1", num:1, object:{a:1,b:2}, array:[0,1,2]}, 
+  {id:2, name:"名字2", num:2, object:{a:"对象1",b:"对象1"}, array:["数组1","数组2"]}, 
+  {id:3, name:"名字3", num:3, object:{a:"对象1",b:"对象1"}, array:["数组1","数组2"]}, 
 ];
 ```
