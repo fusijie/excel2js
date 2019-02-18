@@ -15,7 +15,7 @@
 * 每个 excel 文件只会解析`第一个`表格
 * 支持解析 `.xlsx` 的 excel 文件
 
-### 转换格式
+#### 转换格式
 * excel
 
 | id | name | num | object | array |
@@ -36,3 +36,10 @@ module.exports = [
   {id:3, name:"名字3", num:3, object:{a:"对象1",b:"对象1"}, array:["数组1","数组2"]}, 
 ];
 ```
+
+#### 截图
+
+<div>
+<img src="img/screenshot_1.png" width="400">
+<img src="img/screenshot_2.png" width="400">
+</div>
