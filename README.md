@@ -1,4 +1,4 @@
-### Cocos Creator 插件：转换 Excel 文件为 js 文件
+### Cocos Creator 插件：转换 excel 文件为 js 文件
 
 ---
 
